@@ -33,7 +33,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 2rem; /* Garante espaço entre os cartões */
   perspective: 1000px;
 }
 
@@ -41,13 +41,13 @@ p {
   width: 25rem;
   height: 500px;
   background: var(--card);
-  padding: 25px;
+  padding: 10px;  /* Reduz o padding para economizar espaço */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   text-align: justify;
-  border-radius: 0.2rem;
+  border-radius: 8px; /* Bordas arredondadas */
   box-shadow: 0 8px 100px 0;
   overflow: hidden;
   z-index: 1;
@@ -62,12 +62,12 @@ p {
 
 .face.active .card {
   transform: rotateY(180deg);
-  z-index: 0;
+  z-index: 0; /* Mantém o z-index baixo quando o cartão é girado */
 }
 
 .face.active .card-back {
   transform: rotateY(0);
-  z-index: 1;
+  z-index: 1; /* Aumenta o z-index para que o card-back apareça na frente */
 }
 
 .card::before, .card::after, .card-back::before, .card-back::after {
@@ -141,14 +141,22 @@ h2:hover::before, .face h3:hover::before {
   padding: 0.4em;
   font-size: 13px;
   letter-spacing: 1px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+}
+
+.skills a:hover {
+  background-color: var(--efeitos); /* Mudança de fundo ao hover */
+  color: #fff; /* Mudança de cor ao hover */
+  cursor: pointer;
 }
 
 .image img {
   margin: -44px auto 20px;
-  width: 180px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  display: flex;
+  display: block;
+  margin: 0 auto; /* Centraliza a imagem */
   justify-content: center;
   border: 2px solid rgb(149, 114, 252);
   animation: borderAnimated 5s linear infinite;
@@ -175,7 +183,7 @@ h2:hover::before, .face h3:hover::before {
   }
 }
 
-#read-btn, #read-btn2 {
+.read-btn {
   width: 12rem;
   height: 3rem;
   background-color: var(--efeitos);
@@ -190,11 +198,15 @@ h2:hover::before, .face h3:hover::before {
   transition: all 0.3s ease-in;
 }
 
-#read-btn:hover, #read-btn2:hover {
+.read-btn:hover {
   background: transparent;
   color: #8151c4;
   transition: all .4s;
   border: 2px solid;
+}
+
+#btn-voltar {
+  display: none; /* O botão 'Voltar' começa escondido */
 }
 
 .content-back .social-medias {
@@ -206,7 +218,7 @@ h2:hover::before, .face h3:hover::before {
 
 .content-back .social-media {
   text-decoration: none;
-  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, color 0.3s ease-in-out; /* Transição suave para a cor e transformação */
   color: #fff;
   display: flex;
   align-items: center;
@@ -215,9 +227,9 @@ h2:hover::before, .face h3:hover::before {
 }
 
 .content-back .social-media:hover {
-  transform: translateY(10px);
-  color: var(--efeitos);
-  transition: 0.5s ease;
+  transform: translateY(10px); /* Movimentação ao hover */
+  color: var(--efeitos);       /* Mudança de cor ao hover */
+  transition: transform 0.3s ease, color 0.3s ease; /* Transição suave ao hover */
 }
 
 /* Media Queries para diferentes resoluções */
@@ -270,3 +282,39 @@ h2:hover::before, .face h3:hover::before {
     padding: 30px;
   }
 }
+@media only screen and (max-width: 420px) {
+  .face {
+    gap: 1rem; /* Reduzindo o gap entre os elementos */
+  }
+
+  .card, .card-back {
+    width: 18rem;   /* Reduzindo a largura dos cartões */
+    margin: 0 auto; /* Centralizando os cartões */
+    padding: 15px;  /* Reduzindo o padding */
+  }
+
+  .content h3 {
+    text-align: center;
+    margin: 10px 0; /* Centralizar e ajustar a margem */
+  }
+
+  .read-btn {
+    width: 10rem;  /* Reduzindo o tamanho dos botões */
+    height: 2.5rem; /* Reduzindo a altura dos botões */
+    font-size: 14px; /* Reduzindo o tamanho da fonte dos botões */
+  }
+
+  .image img {
+    width: 150px;  /* Reduzir o tamanho da imagem de perfil */
+    height: 150px;
+  }
+
+  h3 {
+    font-size: 1.2rem; /* Reduzir o tamanho dos títulos */
+  }
+
+  p {
+    font-size: 0.9rem; /* Reduzir o tamanho do texto */
+  }
+}
+
