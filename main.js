@@ -1,25 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const readBtn = document.getElementById("read-btn");
-    const readBtn2 = document.getElementById("read-btn2");
+    const btnSaibaMais = document.getElementById("btn-saiba-mais");
+    const btnVoltar = document.getElementById("btn-voltar");
     const card = document.querySelector(".card");
     const cardBack = document.querySelector(".card-back");
     const face = document.querySelector('.face');
   
     function toggleCards() {
-      face.classList.toggle('active');
-      card.classList.toggle('active');
-      cardBack.classList.toggle('active');
+        face.classList.toggle('active');
+        card.classList.toggle('active');
+        cardBack.classList.toggle('active');
+    
+        // Verifica qual cartão está ativo e ajusta o display
+        if (face.classList.contains('active')) {
+            card.style.display = 'none';      // Esconde o card da frente
+            cardBack.style.display = 'flex';  // Mostra o card de trás
+        } else {
+            card.style.display = 'flex';      // Mostra o card da frente
+            cardBack.style.display = 'none';  // Esconde o card de trás
+        }
+    
+        // Atualiza o texto dos botões
+        buttons.forEach(button => {
+            if (face.classList.contains('active')) {
+                button.textContent = 'Voltar';
+            } else {
+                button.textContent = 'Saiba Mais';
+            }
+        });
+    }    
   
-      if (face.classList.contains('active')) {
-        readBtn.textContent = 'Voltar';
-        readBtn2.textContent = 'Voltar';
-      } else {
-        readBtn.textContent = 'Saiba Mais';
-        readBtn2.textContent = 'Saiba Mais';
-      }
-    }
-  
-    readBtn.addEventListener("click", toggleCards);
-    readBtn2.addEventListener("click", toggleCards);
+    // Event listeners para os dois botões
+    btnSaibaMais.addEventListener("click", toggleCards);
+    btnVoltar.addEventListener("click", toggleCards);
   });
+  
   
